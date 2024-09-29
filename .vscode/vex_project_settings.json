@@ -1,0 +1,18 @@
+{
+	"extension": {
+		"version": "0.6.0",
+		"json": 2
+	},
+	"project": {
+		"name": "LunarRobot",
+		"description": "",
+		"creationDate": "9/25/2024, 4:08:12 PM",
+		"platform": "IQ2",
+		"language": "python",
+		"slot": 1,
+		"sdkVersion": "IQ2_1_0_0_19",
+		"python": {
+			"main": "src/main.py"
+		}
+	}
+}
