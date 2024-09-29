@@ -7,14 +7,14 @@ brain = Brain()
 
 # Initialize Motors
 drive_motor = Motor(Ports.PORT1, False)  # Single drive motor #TODO: Assign ports
-extension_motor = Motor(Ports.PORT2, False)#TODO: Assign ports
-arm_motor = Motor(Ports.PORT3, False)#TODO: Assign ports
-gripper_motor = Motor(Ports.PORT4, False)#TODO: Assign ports
+extension_motor = Motor(Ports.PORT11, False)
+arm_motor = Motor(Ports.PORT8, False)
+gripper_motor = Motor(Ports.PORT9, False)
 
 # Initialize Sensors
-distance_sensor = Distance(Ports.PORT5)#TODO: Assign ports
-optical_sensor = Optical(Ports.PORT6)#TODO: Assign ports
-bumper_sensor = Bumper(Ports.PORT7)#TODO: Assign ports
+distance_sensor = Distance(Ports.PORT7)
+optical_sensor = Optical(Ports.PORT10)
+bumper_sensor = Bumper(Ports.PORT12)
 
 # Variables to store block data and side profile
 side_profile = []
@@ -92,15 +92,15 @@ def check_clearance(block_position, block_distance):
     ]
 
     if not positions_to_check:
-        brain.screen.print(f"No side profile data near block position {block_position}.")
+        brain.screen.print("No side profile data near block position " + str(block_position) + ".")
         return False  # Cannot determine clearance
 
     # Check for obstacles at each position
     for data in positions_to_check:
         distance_measurement = data['distance']
         if distance_measurement < required_clearance_distance:
-            brain.screen.print(f"Obstacle detected at position {data['position']}. Distance: {distance_measurement} mm")
-            return False  # Path is blocked
+            brain.screen.print("Obstacle detected at position " +  str(data['position']) + "Distance:" +str(distance_measurement) + "mm")
+            return False  # Path is blocked 
 
     # No obstacles detected within the corridor
     return True
@@ -393,7 +393,7 @@ def extend_mechanism():
 # Function to rescan the area around a block's position
 def rescan_block_area(block):
     global side_profile, smoothed_profile, blocks_to_collect
-    brain.screen.print(f"Rescanning area around position {block['position']}...")
+    brain.screen.print("Rescanning area around position " + str(block['position']) + "...")
     # Retract the mechanism if not already retracted
     retract_mechanism()
     # Define rescan range
@@ -664,7 +664,7 @@ def stack_block(color):
                 stack_levels_red[index] += 1
                 stack_level = stack_levels_red[index]
                 stacking_position = stacking_positions_red[index]
-                brain.screen.print(f"Stacking red block at position {index + 1}, level {stack_level}...")
+                brain.screen.print("Stacking red block at position " + str(index + 1)  + "...")
                 # Move to stacking position
                 move_to_stacking_position(stacking_position)
                 # Perform stacking
@@ -681,7 +681,7 @@ def stack_block(color):
                 stack_levels_green[index] += 1
                 stack_level = stack_levels_green[index]
                 stacking_position = stacking_positions_green[index]
-                brain.screen.print(f"Stacking green block at position {index + 1}, level {stack_level}...")
+                brain.screen.print("Stacking green block at position " + str(index + 1) + "...")
                 # Move to stacking position
                 move_to_stacking_position(stacking_position)
                 # Perform stacking
